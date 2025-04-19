@@ -50,6 +50,10 @@ AssignmentSchema.statics.getAssignment = async function(id){
     return assignment
 }
 AssignmentSchema.statics.addAssignment = async function(employeeId, projectId, startDate){
+    const getAssignment = await this.findOne({ projectId });
+    if(getAssignment){
+        throw new Error("The project is already assigned")
+    }
     const newAssignment = await this.create({
         employeeId,
         projectId,

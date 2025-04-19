@@ -43,6 +43,9 @@ controller.addAssignment= async (req,res)=>{
         if(e.name ==="ValidationError"){
             return res.status(400).json({ error: e.message });
         }
+        if (e.message.includes("The project is already assigned")){
+            return res.status(400).json({error:e.message})
+        }
         console.error("error while creating assignment: ",e)
         res.status(500).json({
             Error:"internal server Error"
@@ -82,6 +85,7 @@ controller.updateAssignment= async (req,res)=>{
         if(e.name ==="ValidationError"){
             return res.status(400).json({ error: err.message });
         }
+       
         res.status(500).json({
             Error:"internal server Error"
         })
