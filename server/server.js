@@ -13,7 +13,7 @@ console.log("connected")
 
 mongoose.connection.on('error',(err)=>{
     console.log("error: ",err)
-    throw new Error(`unable to connect to database: ${config.mongoUri}`)
+    throw new Error(`unable to connect to database: ${MONGODB_URL}`)
 })
 const server = app.listen(PORT,()=>{
     console.log(`server runing on: http://localhost:${PORT} `)

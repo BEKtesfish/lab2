@@ -1,12 +1,54 @@
-function Table({ data }) {
+import style from './Table.module.css'
+function Table({ data,setAssignment }) {
+  const handleSort = async (name)=>{
+    console.log("clicked")
+    switch(name){
+      case "employeeId": 
+        setAssignment(prev=>
+          [...prev].sort((a, b) =>  
+            a.employeeId._id.localeCompare(b.employeeId._id)
+                        )
+                      );
+        break
+      case "fullName":
+        setAssignment(prev=>
+          [...prev].sort((a, b) =>  
+            a.employeeId.fullName.localeCompare(b.employeeId.fullName)
+                        )
+                      );
+        break
+      
+        case "projectName":
+          setAssignment(prev=>
+            [...prev].sort((a, b) =>  
+              a.projectId.name.localeCompare(b.projectId.name)
+                          )
+                        );
+          break
+      case "startDate":
+        setAssignment(prev =>
+          [...prev].sort((a, b) =>
+          new Date(a.startDate) - new Date(b.startDate)
+            )
+          );
+      break;
+      default:
+        console.warn("Unknown sort key:", name);
+        break;
+
+
+
+    }
+
+  }
     return (
-      <table border="1">
+      <table className={style.table}border="1">
         <thead>
           <tr>
-            <th>Employee ID</th>
-            <th>Employee Name</th>
-            <th>Project Name</th>
-            <th>Start Date</th>
+            <th onClick={() => handleSort('employeeId')}>Employee ID</th>
+            <th onClick={() => handleSort('fullName')}>Employee Name</th>
+            <th onClick={() => handleSort('projectName')}>Project Name</th>
+            <th onClick={() => handleSort('startDate')}>Start Date</th>
           </tr>
         </thead>
         <tbody>

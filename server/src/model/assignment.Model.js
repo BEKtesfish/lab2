@@ -37,6 +37,8 @@ const AssignmentSchema = new mongoose.Schema(
 
 AssignmentSchema.statics.getAssignments= async function(){
         const assignments = await this.find()
+                                      .sort({createdAt:-1})
+                                      .limit(5)
                                       .populate("employeeId")
                                       .populate("projectId");
         return assignments
