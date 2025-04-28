@@ -3,13 +3,7 @@ function Table({ data,setAssignment }) {
   const handleSort = async (name)=>{
     console.log("clicked")
     switch(name){
-      case "employeeId": 
-        setAssignment(prev=>
-          [...prev].sort((a, b) =>  
-            a.employeeId._id.localeCompare(b.employeeId._id)
-                        )
-                      );
-        break
+    
       case "fullName":
         setAssignment(prev=>
           [...prev].sort((a, b) =>  
@@ -45,7 +39,7 @@ function Table({ data,setAssignment }) {
       <table className={style.table}border="1">
         <thead>
           <tr>
-            <th onClick={() => handleSort('employeeId')}>Employee ID</th>
+       
             <th onClick={() => handleSort('fullName')}>Employee Name</th>
             <th onClick={() => handleSort('projectName')}>Project Name</th>
             <th onClick={() => handleSort('startDate')}>Start Date</th>
@@ -54,7 +48,7 @@ function Table({ data,setAssignment }) {
         <tbody>
           {data.map(assignment => (
             <tr key={assignment._id}>
-              <td>{assignment.employeeId?._id}</td>
+             
               <td>{assignment.employeeId?.fullName}</td>
               <td>{assignment.projectId?.name}</td>
               <td>{new Date(assignment.startDate).toLocaleDateString()}</td>

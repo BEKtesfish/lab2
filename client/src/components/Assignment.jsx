@@ -4,7 +4,7 @@ function Assignment(){
     const [assignments,setAssignment] = React.useState([])
     const [isLoading, setIsLoading] = React.useState(false)
     const [error, setError] = React.useState(null)
-   const [reload,setReload] = React.useState(false)
+  
    const getAssignments = async () => {
     try{
    
